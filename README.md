@@ -10,4 +10,4 @@ A tiny library for reading and interpreting raw data.
 
 ### License
 
-BitFiddle is distributed the MIT license. See `LICENSE` for more information.
+BitFiddle is distributed under the MIT license. See `LICENSE` for more information.
