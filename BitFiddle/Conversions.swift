@@ -15,7 +15,7 @@ public extension BinarySlice where B: BinaryInteger {
     
     public func values(endianness: Endianness = .default) -> [B] {
         return (0..<(raw.count / B.size)).map {
-            let rawValue = Array(raw[$0..<(B.size * ($0 + 1))])
+            let rawValue = Array(raw[($0 * B.size)..<(B.size * ($0 + 1))])
             return BinarySingleton<B>(raw: rawValue).value(endianness: endianness)
         }
     }
