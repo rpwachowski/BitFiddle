@@ -1,6 +1,8 @@
 import Foundation
 
 public enum Endianness {
+    public static var `default` = Endianness.little
+    
     case big
     case little
 }
@@ -25,6 +27,14 @@ public struct BinaryReader {
     
     public mutating func seek(to offset: Int = 0) {
         self.offset = offset
+    }
+    
+    public mutating func seek<B>(to offset: BinaryOffset<B>) {
+        self.offset = offset.stride * sizeof(B.self)
+    }
+    
+    public mutating func seek<B: BinarySliceRepresentable>(to offset: Int, of type: B.Type) {
+        self.offset = offset * B.size
     }
     
     public mutating func next<B>() -> BinarySingleton<B> {
