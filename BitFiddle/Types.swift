@@ -46,6 +46,10 @@ public struct BinaryOffset<S: _BinaryStride>: Comparable, Equatable {
     
     public let stride: Int
     
+    public init(stride: Int) {
+        self.stride = stride
+    }
+    
 }
 
 public extension BinaryOffset {
