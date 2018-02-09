@@ -1,7 +1,18 @@
 import Foundation
 
 public enum Endianness {
-    public static var `default` = Endianness.little
+    
+    public static var system: Endianness {
+        switch CFByteOrderGetCurrent() {
+        case Int(CFByteOrderBigEndian.rawValue): return .big
+        case Int(CFByteOrderLittleEndian.rawValue): return .little
+        default: return .little
+        }
+    }
+    
+    public static var network: Endianness {
+        return .big
+    }
     
     case big
     case little
