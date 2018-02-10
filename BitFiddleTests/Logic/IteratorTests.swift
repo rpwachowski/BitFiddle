@@ -18,4 +18,3 @@ class IteratorTests: XCTestCase {
     }
     
 }
-

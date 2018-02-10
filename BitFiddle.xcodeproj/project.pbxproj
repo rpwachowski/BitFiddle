@@ -7,12 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		940C186E2026A7D500782A05 /* BinaryReaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 940C186D2026A7D500782A05 /* BinaryReaderTests.swift */; };
+		940C18702026E80D00782A05 /* Conversions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 940C186F2026E80D00782A05 /* Conversions.swift */; };
+		944A01E81FB7ECD500357B18 /* Conversions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 944A01E71FB7ECD500357B18 /* Conversions.swift */; };
 		945140AA1FB1148C00D53CCA /* BitFiddle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 945140A01FB1148B00D53CCA /* BitFiddle.framework */; };
 		945140B11FB1148C00D53CCA /* BitFiddle.h in Headers */ = {isa = PBXBuildFile; fileRef = 945140A31FB1148B00D53CCA /* BitFiddle.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		945140BE1FB114DC00D53CCA /* Binary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 945140BD1FB114DC00D53CCA /* Binary.swift */; };
 		945140C21FB114F900D53CCA /* Iterators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 945140C11FB114F900D53CCA /* Iterators.swift */; };
 		945140C41FB1154500D53CCA /* Types.swift in Sources */ = {isa = PBXBuildFile; fileRef = 945140C31FB1154500D53CCA /* Types.swift */; };
 		945140C61FB115C500D53CCA /* IteratorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 945140C51FB115C500D53CCA /* IteratorTests.swift */; };
+		94C73E15202F7D640060475F /* BinaryViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94C73E14202F7D640060475F /* BinaryViewTests.swift */; };
+		94C73E19202F830D0060475F /* BinaryViewPerformanceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94C73E18202F830D0060475F /* BinaryViewPerformanceTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -26,6 +31,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		940C186D2026A7D500782A05 /* BinaryReaderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BinaryReaderTests.swift; sourceTree = "<group>"; };
+		940C186F2026E80D00782A05 /* Conversions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Conversions.swift; sourceTree = "<group>"; };
+		944A01E71FB7ECD500357B18 /* Conversions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Conversions.swift; sourceTree = "<group>"; };
 		945140A01FB1148B00D53CCA /* BitFiddle.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = BitFiddle.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		945140A31FB1148B00D53CCA /* BitFiddle.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BitFiddle.h; sourceTree = "<group>"; };
 		945140A41FB1148B00D53CCA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -35,6 +43,8 @@
 		945140C11FB114F900D53CCA /* Iterators.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Iterators.swift; sourceTree = "<group>"; };
 		945140C31FB1154500D53CCA /* Types.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Types.swift; sourceTree = "<group>"; };
 		945140C51FB115C500D53CCA /* IteratorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IteratorTests.swift; sourceTree = "<group>"; };
+		94C73E14202F7D640060475F /* BinaryViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BinaryViewTests.swift; sourceTree = "<group>"; };
+		94C73E18202F830D0060475F /* BinaryViewPerformanceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BinaryViewPerformanceTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,6 +92,7 @@
 				945140BD1FB114DC00D53CCA /* Binary.swift */,
 				945140C11FB114F900D53CCA /* Iterators.swift */,
 				945140C31FB1154500D53CCA /* Types.swift */,
+				944A01E71FB7ECD500357B18 /* Conversions.swift */,
 			);
 			path = BitFiddle;
 			sourceTree = "<group>";
@@ -89,10 +100,30 @@
 		945140AD1FB1148C00D53CCA /* BitFiddleTests */ = {
 			isa = PBXGroup;
 			children = (
+				94C73E17202F80490060475F /* Performance */,
+				94C73E16202F803D0060475F /* Logic */,
 				945140B01FB1148C00D53CCA /* Info.plist */,
-				945140C51FB115C500D53CCA /* IteratorTests.swift */,
 			);
 			path = BitFiddleTests;
+			sourceTree = "<group>";
+		};
+		94C73E16202F803D0060475F /* Logic */ = {
+			isa = PBXGroup;
+			children = (
+				940C186D2026A7D500782A05 /* BinaryReaderTests.swift */,
+				94C73E14202F7D640060475F /* BinaryViewTests.swift */,
+				940C186F2026E80D00782A05 /* Conversions.swift */,
+				945140C51FB115C500D53CCA /* IteratorTests.swift */,
+			);
+			path = Logic;
+			sourceTree = "<group>";
+		};
+		94C73E17202F80490060475F /* Performance */ = {
+			isa = PBXGroup;
+			children = (
+				94C73E18202F830D0060475F /* BinaryViewPerformanceTests.swift */,
+			);
+			path = Performance;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -205,6 +236,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				945140C41FB1154500D53CCA /* Types.swift in Sources */,
+				944A01E81FB7ECD500357B18 /* Conversions.swift in Sources */,
 				945140BE1FB114DC00D53CCA /* Binary.swift in Sources */,
 				945140C21FB114F900D53CCA /* Iterators.swift in Sources */,
 			);
@@ -214,7 +246,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				940C18702026E80D00782A05 /* Conversions.swift in Sources */,
 				945140C61FB115C500D53CCA /* IteratorTests.swift in Sources */,
+				940C186E2026A7D500782A05 /* BinaryReaderTests.swift in Sources */,
+				94C73E15202F7D640060475F /* BinaryViewTests.swift in Sources */,
+				94C73E19202F830D0060475F /* BinaryViewPerformanceTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -344,14 +380,14 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = WGHHYE2B3L;
+				DEVELOPMENT_TEAM = "";
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = BitFiddle/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.ryanwachowski.BitFiddle;
+				PRODUCT_BUNDLE_IDENTIFIER = com.rpwachowski.BitFiddle;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -366,14 +402,14 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = WGHHYE2B3L;
+				DEVELOPMENT_TEAM = "";
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = BitFiddle/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.ryanwachowski.BitFiddle;
+				PRODUCT_BUNDLE_IDENTIFIER = com.rpwachowski.BitFiddle;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 4.0;
@@ -385,7 +421,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				DEVELOPMENT_TEAM = WGHHYE2B3L;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = BitFiddleTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ryanwachowski.BitFiddleTests;
@@ -399,7 +435,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				DEVELOPMENT_TEAM = WGHHYE2B3L;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = BitFiddleTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ryanwachowski.BitFiddleTests;
@@ -428,6 +464,7 @@
 				945140B61FB1148C00D53CCA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		945140B71FB1148C00D53CCA /* Build configuration list for PBXNativeTarget "BitFiddleTests" */ = {
 			isa = XCConfigurationList;
@@ -436,6 +473,7 @@
 				945140B91FB1148C00D53CCA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

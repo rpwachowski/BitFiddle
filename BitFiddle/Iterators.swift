@@ -23,6 +23,11 @@ internal struct _BaseBinaryIterator<P: _BinaryIteratorProduceable>: IteratorProt
         self.generator = generator
     }
     
+    internal init(_ view: BinaryView, invoking generator: @escaping (inout BinaryReader) -> () -> Element) {
+        reader = BinaryReader(view: view)
+        self.generator = generator
+    }
+    
     mutating func next() -> Element? {
         guard reader.hasNext(as: P.NativeType.self) else { return nil }
         return generator(&reader)()
@@ -40,6 +45,11 @@ public struct BinarySingletonIterator<B: BinarySliceRepresentable>: IteratorProt
         base = _BaseBinaryIterator(binary, invoking: generator)
     }
     
+    public init(_ view: BinaryView) {
+        let generator = BinaryReader.next as (inout BinaryReader) -> () -> Element
+        base = _BaseBinaryIterator.init(view, invoking: generator)
+    }
+    
     public mutating func next() -> Element? {
         return base.next()
     }
@@ -53,6 +63,16 @@ public struct BinarySliceIterator<B: BinarySliceRepresentable>: IteratorProtocol
     
     public init(_ binary: Binary, count: Int) {
         base = _BaseBinaryIterator(binary, invoking: { reader in
+            let invocation = BinaryReader.next as (inout BinaryReader) -> (Int) -> Element
+            return { [reader] in
+                var reader = reader
+                return invocation(&reader)(count)
+            }
+        })
+    }
+    
+    public init(_ view: BinaryView, count: Int) {
+        base = _BaseBinaryIterator(view, invoking: { reader in
             let invocation = BinaryReader.next as (inout BinaryReader) -> (Int) -> Element
             return { [reader] in
                 var reader = reader
