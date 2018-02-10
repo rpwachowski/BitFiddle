@@ -5,6 +5,7 @@ BitFiddle is a library for reading and interpreting raw data. It makes use of th
 ## Installation
 
 Cocoapods: `pod 'BitFiddle', '~>0.1.0'`. See [BitFiddle.podspec](BitFiddle.podspec) for more information. 
+
 Carthage: `github "rpwachowski/BitFiddle" ~> 0.1.0 && carthage update`
 
 ## Contributing
