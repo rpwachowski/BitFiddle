@@ -110,10 +110,18 @@ extension UInt64: BinarySliceRepresentable { }
 
 public struct BinarySingleton<B: BinarySliceRepresentable> {
     internal let raw: [UInt8]
+    
+    public var binary: Binary {
+        return Binary(bytes: raw)
+    }
 }
 
 public struct BinarySlice<B: BinarySliceRepresentable> {
     internal let raw: [UInt8]
+    
+    public var binary: Binary {
+        return Binary(bytes: raw)
+    }
 }
 
 internal func sizeof<T>(_ type: T.Type) -> Int {

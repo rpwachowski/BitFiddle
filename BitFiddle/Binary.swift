@@ -20,12 +20,16 @@ public enum Endianness {
 
 public struct BinaryReader {
     
-    private let bytes: [UInt8]
+    private let bytes: AnyCollection<Byte>
     
     private var offset = 0
     
     internal init(binary: Binary) {
-        bytes = binary.bytes
+        bytes = AnyCollection(binary.bytes)
+    }
+    
+    internal init(view: BinaryView) {
+        bytes = AnyCollection(view.ptr)
     }
     
     func hasNext<B: BinarySliceRepresentable>(as type: B.Type) -> Bool {
@@ -49,13 +53,13 @@ public struct BinaryReader {
     }
     
     public mutating func next<B>() -> BinarySingleton<B> {
-        let singleton = BinarySingleton<B>(raw: Array(bytes[offset..<(offset + B.size)]))
+        let singleton = BinarySingleton<B>(raw: Array(bytes[AnyIndex(offset)..<AnyIndex(offset + B.size)]))
         offset += B.size
         return singleton
     }
     
     public mutating func next<B>(_ count: Int) -> BinarySlice<B> {
-        let slice = BinarySlice<B>(raw: Array(bytes[offset..<(offset + B.size * count)]))
+        let slice = BinarySlice<B>(raw: Array(bytes[AnyIndex(offset)..<AnyIndex(offset + B.size * count)]))
         offset += B.size * count
         return slice
     }
@@ -64,7 +68,7 @@ public struct BinaryReader {
 
 public struct Binary {
     
-    public let bytes: [UInt8]
+    public private(set) var bytes: [UInt8]
     
     public var reader: BinaryReader {
         return BinaryReader(binary: self)
@@ -78,6 +82,16 @@ public struct Binary {
         var bytes = [UInt8](repeating: 0, count: data.count)
         (data as NSData).getBytes(&bytes, length: data.count)
         self.bytes = bytes
+    }
+    
+    public var duh: String {
+        return "duh"
+    }
+    
+    public func offset(by offset: BinaryOffset<Byte>) -> BinaryView {
+        return bytes.withUnsafeBufferPointer {
+            BinaryView(UnsafeBufferPointer(start: $0.baseAddress?.advanced(by: offset.stride), count: $0.count - offset.stride))
+        }
     }
     
     public func iterator<B>(of type: B.Type) -> BinarySingletonIterator<B> {
@@ -118,6 +132,32 @@ public struct Binary {
     
     public func dwords(_ count: Int, at offset: BinaryOffset<Byte>) -> BinarySlice<DWord> {
         return BinarySlice(raw: Array(bytes[offset.stride..<(offset.stride + 4 * count)]))
+    }
+    
+}
+
+public struct BinaryView {
+    
+    let ptr: UnsafeBufferPointer<Byte>
+    
+    init(_ ptr: UnsafeBufferPointer<Byte>) {
+        self.ptr = ptr
+    }
+    
+    public func iterator<B>(of type: B.Type) -> BinarySingletonIterator<B> {
+        return BinarySingletonIterator(self)
+    }
+    
+    public func groupIterator<B>(of count: Int, _ type: B.Type) -> BinarySliceIterator<B> {
+        return BinarySliceIterator(self, count: count)
+    }
+    
+    public func iterating<B>(each type: B.Type) -> AnySequence<BinarySingleton<B>> {
+        return AnySequence(IteratorSequence(iterator(of: type)))
+    }
+    
+    public func iteratingGroups<B>(of count: Int, _ type: B.Type) -> AnySequence<BinarySlice<B>> {
+        return AnySequence(IteratorSequence(groupIterator(of: count, type)))
     }
     
 }

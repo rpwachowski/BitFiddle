@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>classNames</key>
+	<dict>
+		<key>BinaryViewPerformanceTests</key>
+		<dict>
+			<key>testImplementationInitializationPerformance()</key>
+			<dict>
+				<key>com.apple.XCTPerformanceMetric_WallClockTime</key>
+				<dict>
+					<key>baselineAverage</key>
+					<real>7.854e-05</real>
+					<key>baselineIntegrationDisplayName</key>
+					<string>Feb 10, 2018, 3:10:09 PM</string>
+				</dict>
+			</dict>
+			<key>testImplementationIteratorPerformance()</key>
+			<dict>
+				<key>com.apple.XCTPerformanceMetric_WallClockTime</key>
+				<dict>
+					<key>baselineAverage</key>
+					<real>0.0098359</real>
+					<key>baselineIntegrationDisplayName</key>
+					<string>Feb 10, 2018, 3:10:11 PM</string>
+				</dict>
+			</dict>
+			<key>testImplementationPerformance()</key>
+			<dict>
+				<key>com.apple.XCTPerformanceMetric_WallClockTime</key>
+				<dict>
+					<key>baselineAverage</key>
+					<real>7.6299e-05</real>
+					<key>baselineIntegrationDisplayName</key>
+					<string>Feb 10, 2018, 2:55:46 PM</string>
+				</dict>
+			</dict>
+			<key>testNaiveInitializationPerformance()</key>
+			<dict>
+				<key>com.apple.XCTPerformanceMetric_WallClockTime</key>
+				<dict>
+					<key>baselineAverage</key>
+					<real>1.6137e-05</real>
+					<key>baselineIntegrationDisplayName</key>
+					<string>Feb 10, 2018, 3:10:13 PM</string>
+				</dict>
+			</dict>
+			<key>testNaiveIteratorPerformance()</key>
+			<dict>
+				<key>com.apple.XCTPerformanceMetric_WallClockTime</key>
+				<dict>
+					<key>baselineAverage</key>
+					<real>0.0095242</real>
+					<key>baselineIntegrationDisplayName</key>
+					<string>Feb 10, 2018, 3:10:14 PM</string>
+				</dict>
+			</dict>
+			<key>testNaivePerformance()</key>
+			<dict>
+				<key>com.apple.XCTPerformanceMetric_WallClockTime</key>
+				<dict>
+					<key>baselineAverage</key>
+					<real>2.6496e-05</real>
+					<key>baselineIntegrationDisplayName</key>
+					<string>Feb 10, 2018, 2:55:46 PM</string>
+				</dict>
+			</dict>
+		</dict>
+	</dict>
+</dict>
+</plist>
