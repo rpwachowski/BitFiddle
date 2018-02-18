@@ -84,10 +84,6 @@ public struct Binary {
         self.bytes = bytes
     }
     
-    public var duh: String {
-        return "duh"
-    }
-    
     public func offset(by offset: BinaryOffset<Byte>) -> BinaryView {
         return bytes.withUnsafeBufferPointer {
             BinaryView(UnsafeBufferPointer(start: $0.baseAddress?.advanced(by: offset.stride), count: $0.count - offset.stride))
@@ -139,6 +135,10 @@ public struct Binary {
 public struct BinaryView {
     
     let ptr: UnsafeBufferPointer<Byte>
+    
+    public var reader: BinaryReader {
+        return BinaryReader(view: self)
+    }
     
     init(_ ptr: UnsafeBufferPointer<Byte>) {
         self.ptr = ptr
