@@ -24,9 +24,4 @@ class BinaryViewTests: XCTestCase {
         XCTAssert(subsequence == [240, 0, 0, 0], "Expected subsequence to be [240, 0, 0, 0], was \(subsequence).")
     }
     
-    func testConvertSlice() {
-        let slice = binary.words(2, at: BinaryOffset(stride: 0))
-        XCTAssert(slice.values(endianness: .big) == [0, 255], "Expected big-Endian values to be [0, 255], was \(slice.values(endianness: .big)).")
-        XCTAssert(slice.values(endianness: .little) == [0, 65280], "Expected little-Endian values to be [0, 65280], was \(slice.values(endianness: .little)).")
-    }
 }
