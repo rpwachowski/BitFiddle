@@ -18,54 +18,6 @@ public enum Endianness {
     case little
 }
 
-public struct BinaryReader {
-    
-    private let bytes: AnyCollection<Byte>
-    
-    private var offset = 0
-    
-    internal init(binary: Binary) {
-        bytes = AnyCollection(binary.bytes)
-    }
-    
-    internal init(view: BinaryView) {
-        bytes = AnyCollection(view.ptr)
-    }
-    
-    func hasNext<B: BinarySliceRepresentable>(as type: B.Type) -> Bool {
-        return offset + B.size <= bytes.count
-    }
-    
-    func hasNext<B: BinarySliceRepresentable>(_ count: Int, as type: B.Type) -> Bool {
-        return offset + B.size * count <= bytes.count
-    }
-    
-    public mutating func seek(to offset: Int = 0) {
-        self.offset = offset
-    }
-    
-    public mutating func seek<B>(to offset: BinaryOffset<B>) {
-        self.offset = offset.stride * sizeof(B.self)
-    }
-    
-    public mutating func seek<B: BinarySliceRepresentable>(to offset: Int, of type: B.Type) {
-        self.offset = offset * B.size
-    }
-    
-    public mutating func next<B>() -> BinarySingleton<B> {
-        let singleton = BinarySingleton<B>(raw: Array(bytes[AnyIndex(offset)..<AnyIndex(offset + B.size)]))
-        offset += B.size
-        return singleton
-    }
-    
-    public mutating func next<B>(_ count: Int) -> BinarySlice<B> {
-        let slice = BinarySlice<B>(raw: Array(bytes[AnyIndex(offset)..<AnyIndex(offset + B.size * count)]))
-        offset += B.size * count
-        return slice
-    }
-    
-}
-
 public struct Binary {
     
     public private(set) var bytes: [UInt8]
@@ -114,6 +66,10 @@ public struct Binary {
         return BinarySlice(raw: Array(bytes[offset.stride..<(offset.stride + count)]))
     }
     
+    public func bytes(from start: BinaryOffset<Byte> = .zero, to end: BinaryOffset<Byte>) -> BinarySlice<Byte> {
+        return BinarySlice(raw: Array(bytes[start.stride..<end.stride]))
+    }
+    
     public func word(at offset: BinaryOffset<Byte>) -> BinarySingleton<Word> {
         return BinarySingleton(raw: Array(bytes[offset.stride..<(offset.stride + 2)]))
     }
@@ -129,35 +85,40 @@ public struct Binary {
     public func dwords(_ count: Int, at offset: BinaryOffset<Byte>) -> BinarySlice<DWord> {
         return BinarySlice(raw: Array(bytes[offset.stride..<(offset.stride + 4 * count)]))
     }
+
+    public func appending(_ bytes: [UInt8]) -> Binary {
+        return Binary(bytes: self.bytes + bytes)
+    }
+    
+    public func prepending(_ bytes: [UInt8]) -> Binary {
+        return Binary(bytes: bytes + self.bytes)
+    }
+    
+    public func inserting(_ bytes: [UInt8], at offset: BinaryOffset<Byte>) -> Binary {
+        return Binary(bytes: self.bytes(to: offset).raw + bytes + self.offset(by: offset).bytes)
+    }
+    
+    public func overwriting(with replacement: [UInt8], between start: BinaryOffset<Byte>, and end: BinaryOffset<Byte>) -> Binary {
+        guard end.stride - start.stride == replacement.count else {
+            fatalError("""
+                       Overwriting slices of mismatched sizes.
+                       start: \(start.stride)    end: \(end.stride)
+                       expected size: \(end.stride - start.stride)    actual size: \(replacement.count)
+                       """)
+        }
+        return Binary(bytes: bytes(to: start).raw + replacement + offset(by: end).bytes)
+    }
+    
+    public func deleting(between start: BinaryOffset<Byte>, and end: BinaryOffset<Byte>) -> Binary {
+        return Binary(bytes: bytes(to: start).raw + offset(by: end).bytes)
+    }
     
 }
 
-public struct BinaryView {
+extension Binary: Equatable {
     
-    let ptr: UnsafeBufferPointer<Byte>
-    
-    public var reader: BinaryReader {
-        return BinaryReader(view: self)
-    }
-    
-    init(_ ptr: UnsafeBufferPointer<Byte>) {
-        self.ptr = ptr
-    }
-    
-    public func iterator<B>(of type: B.Type) -> BinarySingletonIterator<B> {
-        return BinarySingletonIterator(self)
-    }
-    
-    public func groupIterator<B>(of count: Int, _ type: B.Type) -> BinarySliceIterator<B> {
-        return BinarySliceIterator(self, count: count)
-    }
-    
-    public func iterating<B>(each type: B.Type) -> AnySequence<BinarySingleton<B>> {
-        return AnySequence(IteratorSequence(iterator(of: type)))
-    }
-    
-    public func iteratingGroups<B>(of count: Int, _ type: B.Type) -> AnySequence<BinarySlice<B>> {
-        return AnySequence(IteratorSequence(groupIterator(of: count, type)))
+    public static func ==(_ lhs: Binary, _ rhs: Binary) -> Bool {
+        return lhs.bytes == rhs.bytes
     }
     
 }

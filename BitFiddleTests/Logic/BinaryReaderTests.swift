@@ -1,11 +1,3 @@
-//
-//  BinaryReaderTests.swift
-//  BitFiddleTests
-//
-//  Created by Ryan Wachowski on 2/3/18.
-//  Copyright © 2018 Ryan Wachowski. All rights reserved.
-//
-
 import Foundation
 import XCTest
 @testable import BitFiddle

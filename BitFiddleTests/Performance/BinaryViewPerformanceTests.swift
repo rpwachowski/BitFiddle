@@ -49,20 +49,20 @@ class BinaryViewPerformanceTests: XCTestCase {
     
     func testNaiveInitializationPerformance() {
         measure {
-            let array = Array(binary.naiveOffset(by: BinaryOffset(stride: 450)).bytes)
+            _ = Array(binary.naiveOffset(by: BinaryOffset(stride: 450)).bytes)
         }
     }
     
     func testImplementationInitializationPerformance() {
         measure {
-            let array = Array(binary.offset(by: BinaryOffset(stride: 450)).ptr)
+            _ = Array(binary.offset(by: BinaryOffset(stride: 450)).ptr)
         }
     }
     
     func testNaiveIteratorPerformance() {
         measure {
             var iterator = binary.naiveOffset(by: BinaryOffset(stride: 450)).iterator(of: Byte.self)
-            for i in 0..<2500 {
+            for _ in 0..<2500 {
                 _ = iterator.next()
             }
         }
@@ -71,7 +71,7 @@ class BinaryViewPerformanceTests: XCTestCase {
     func testImplementationIteratorPerformance() {
         measure {
             var iterator = binary.offset(by: BinaryOffset(stride: 450)).iterator(of: Byte.self)
-            for i in 0..<2500 {
+            for _ in 0..<2500 {
                 _ = iterator.next()
             }
         }
