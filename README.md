@@ -1,5 +1,8 @@
 # BitFiddle
 
+![CocoaPods](https://img.shields.io/cocoapods/v/BitFiddle.svg)
+![build status](https://img.shields.io/travis/rpwachowski/bitfiddle.svg)
+
 BitFiddle is a library for reading and interpreting raw data. It makes use of the type system to create safe interfaces for converting to and from various types. The goal of BitFiddle is to ensure that clients can focus on using data instead of asserting preconditions.
 
 ## Installation

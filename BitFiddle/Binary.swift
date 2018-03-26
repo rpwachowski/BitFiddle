@@ -90,7 +90,9 @@ public struct Binary {
         return Binary(bytes: bytes(to: start).raw + offset(by: end).bytes)
     }
     
-//    public func inserting(_ bytes: [UInt8], between start: BinaryOffset<Byte>)
+    public func inserting(_ bytes: [UInt8], at offset: BinaryOffset<Byte>) -> Binary {
+        return Binary(bytes: self.bytes(to: offset).raw + bytes + self.offset(by: offset).bytes)
+    }
     
     public func overwriting(with replacement: [UInt8], between start: BinaryOffset<Byte>, and end: BinaryOffset<Byte>) -> Binary {
         guard end.stride - start.stride == replacement.count else {

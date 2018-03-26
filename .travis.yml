@@ -11,3 +11,6 @@ script:
   - xcodebuild -project BitFiddle.xcodeproj -scheme BitFiddle -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO | xcpretty
   - xcodebuild test -project BitFiddle.xcodeproj -scheme BitFiddle -destination 'platform=iOS Simulator,name=iPhone 6,OS=11.2' -sdk iphonesimulator
   - pod lib lint
+
+after_success:
+  - bash <(curl -s https://codecov.io/bash) -J 'BitFiddle'
