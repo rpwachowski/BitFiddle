@@ -18,6 +18,9 @@
 		945140C61FB115C500D53CCA /* IteratorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 945140C51FB115C500D53CCA /* IteratorTests.swift */; };
 		94C73E15202F7D640060475F /* BinaryViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94C73E14202F7D640060475F /* BinaryViewTests.swift */; };
 		94C73E19202F830D0060475F /* BinaryViewPerformanceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94C73E18202F830D0060475F /* BinaryViewPerformanceTests.swift */; };
+		94E5EF1120685BE100093FFF /* BinaryReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94E5EF1020685BE100093FFF /* BinaryReader.swift */; };
+		94E5EF152068972C00093FFF /* ImmutableWriteTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94E5EF142068972C00093FFF /* ImmutableWriteTests.swift */; };
+		94E5EF17206897B300093FFF /* BinaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94E5EF16206897B300093FFF /* BinaryView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,6 +48,9 @@
 		945140C51FB115C500D53CCA /* IteratorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IteratorTests.swift; sourceTree = "<group>"; };
 		94C73E14202F7D640060475F /* BinaryViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BinaryViewTests.swift; sourceTree = "<group>"; };
 		94C73E18202F830D0060475F /* BinaryViewPerformanceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BinaryViewPerformanceTests.swift; sourceTree = "<group>"; };
+		94E5EF1020685BE100093FFF /* BinaryReader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BinaryReader.swift; sourceTree = "<group>"; };
+		94E5EF142068972C00093FFF /* ImmutableWriteTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImmutableWriteTests.swift; sourceTree = "<group>"; };
+		94E5EF16206897B300093FFF /* BinaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BinaryView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,6 +96,8 @@
 				945140A31FB1148B00D53CCA /* BitFiddle.h */,
 				945140A41FB1148B00D53CCA /* Info.plist */,
 				945140BD1FB114DC00D53CCA /* Binary.swift */,
+				94E5EF1020685BE100093FFF /* BinaryReader.swift */,
+				94E5EF16206897B300093FFF /* BinaryView.swift */,
 				945140C11FB114F900D53CCA /* Iterators.swift */,
 				945140C31FB1154500D53CCA /* Types.swift */,
 				944A01E71FB7ECD500357B18 /* Conversions.swift */,
@@ -114,6 +122,7 @@
 				94C73E14202F7D640060475F /* BinaryViewTests.swift */,
 				940C186F2026E80D00782A05 /* Conversions.swift */,
 				945140C51FB115C500D53CCA /* IteratorTests.swift */,
+				94E5EF142068972C00093FFF /* ImmutableWriteTests.swift */,
 			);
 			path = Logic;
 			sourceTree = "<group>";
@@ -183,7 +192,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0900;
-				LastUpgradeCheck = 0900;
+				LastUpgradeCheck = 0920;
 				ORGANIZATIONNAME = "Ryan Wachowski";
 				TargetAttributes = {
 					9451409F1FB1148B00D53CCA = {
@@ -237,6 +246,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				945140C41FB1154500D53CCA /* Types.swift in Sources */,
+				94E5EF17206897B300093FFF /* BinaryView.swift in Sources */,
+				94E5EF1120685BE100093FFF /* BinaryReader.swift in Sources */,
 				944A01E81FB7ECD500357B18 /* Conversions.swift in Sources */,
 				945140BE1FB114DC00D53CCA /* Binary.swift in Sources */,
 				945140C21FB114F900D53CCA /* Iterators.swift in Sources */,
@@ -249,6 +260,7 @@
 			files = (
 				940C18702026E80D00782A05 /* Conversions.swift in Sources */,
 				945140C61FB115C500D53CCA /* IteratorTests.swift in Sources */,
+				94E5EF152068972C00093FFF /* ImmutableWriteTests.swift in Sources */,
 				940C186E2026A7D500782A05 /* BinaryReaderTests.swift in Sources */,
 				94C73E15202F7D640060475F /* BinaryViewTests.swift in Sources */,
 				94C73E19202F830D0060475F /* BinaryViewPerformanceTests.swift in Sources */,
@@ -286,6 +298,8 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
@@ -344,6 +358,8 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
