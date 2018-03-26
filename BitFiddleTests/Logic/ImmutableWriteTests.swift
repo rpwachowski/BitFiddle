@@ -64,5 +64,52 @@ class ImmutableWriteTests: XCTestCase {
         XCTAssert(result == Binary(bytes: []))
     }
     
+    func testAppendingEmptyReturnsEquivalentBinary() {
+        let result = binary.appending([])
+        XCTAssert(result == binary)
+    }
+
+    func testAppendingNonEmpty() {
+        let bytes = Array(repeating: Byte.min, count: 5)
+        let result = binary.appending(bytes)
+        XCTAssert(result == Binary(bytes: Array(repeating: Byte.max, count: 20) + bytes))
+    }
+    
+    func testPrependingEmptyReturnsEquivalentBinary() {
+        let result = binary.prepending([])
+        XCTAssert(result == binary)
+    }
+    
+    func testPrependingNonEmpty() {
+        let bytes = Array(repeating: Byte.min, count: 5)
+        let result = binary.prepending(bytes)
+        XCTAssert(result == Binary(bytes: bytes + Array(repeating: Byte.max, count: 20)))
+    }
+    
+    func testInsertingEmptyReturnsEquivalentBinary() {
+        let result = binary.inserting([], at: .zero)
+        XCTAssert(result == binary)
+    }
+    
+    func testInsertingAtBeginningEqualsPrepending() {
+        let bytes = Array(repeating: Byte.min, count: 5)
+        let insertingResult = binary.inserting(bytes, at: .zero)
+        let prependingResult = binary.prepending(bytes)
+        XCTAssert(insertingResult == prependingResult)
+    }
+    
+    func testInsertingAtEndEqualsAppending() {
+        let bytes = Array(repeating: Byte.min, count: 5)
+        let insertingResult = binary.inserting(bytes, at: .init(stride: 20))
+        let appendingResult = binary.appending(bytes)
+        XCTAssert(insertingResult == appendingResult)
+    }
+    
+    func testInsertingWithinBinary() {
+        let bytes = Array(repeating: Byte.min, count: 5)
+        let result = binary.inserting(bytes, at: .init(stride: 5))
+        XCTAssert(result == Binary(bytes: Array(repeating: Byte.max, count: 5) + bytes + Array(repeating: Byte.max, count: 15)))
+    }
+    
 }
 

@@ -85,9 +85,13 @@ public struct Binary {
     public func dwords(_ count: Int, at offset: BinaryOffset<Byte>) -> BinarySlice<DWord> {
         return BinarySlice(raw: Array(bytes[offset.stride..<(offset.stride + 4 * count)]))
     }
+
+    public func appending(_ bytes: [UInt8]) -> Binary {
+        return Binary(bytes: self.bytes + bytes)
+    }
     
-    public func deleting(between start: BinaryOffset<Byte>, and end: BinaryOffset<Byte>) -> Binary {
-        return Binary(bytes: bytes(to: start).raw + offset(by: end).bytes)
+    public func prepending(_ bytes: [UInt8]) -> Binary {
+        return Binary(bytes: bytes + self.bytes)
     }
     
     public func inserting(_ bytes: [UInt8], at offset: BinaryOffset<Byte>) -> Binary {
@@ -103,6 +107,10 @@ public struct Binary {
                        """)
         }
         return Binary(bytes: bytes(to: start).raw + replacement + offset(by: end).bytes)
+    }
+    
+    public func deleting(between start: BinaryOffset<Byte>, and end: BinaryOffset<Byte>) -> Binary {
+        return Binary(bytes: bytes(to: start).raw + offset(by: end).bytes)
     }
     
 }
