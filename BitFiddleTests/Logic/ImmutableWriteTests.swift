@@ -2,7 +2,7 @@ import Foundation
 import XCTest
 @testable import BitFiddle
 
-class ImmutableWriteTests: XCTest {
+class ImmutableWriteTests: XCTestCase {
     
     var binary: Binary!
     
