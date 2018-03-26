@@ -1,7 +1,6 @@
 import Foundation
 import XCTest
 @testable import BitFiddle
-@testable import WebKit
 
 class ImmutableWriteTests: XCTest {
     
